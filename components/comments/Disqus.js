@@ -29,7 +29,6 @@ const Disqus = ({ frontMatter }) => {
   return (
     <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300">
       {<button onClick={LoadComments}>Load Comments</button>}
-<p>{process.env.NEXT_PUBLIC_DISQUS_URL} ll {process.env.NEXT_PUBLIC_DISQUS_SHORTNAME}</p>
       <div className="disqus-frame" id={COMMENTS_ID} />
 
 
