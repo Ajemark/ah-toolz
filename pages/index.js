@@ -27,7 +27,7 @@ export default function Home() {
 
           <div className=''>
             <div className="grid gap-2 p-4 xl:grid-cols-2">
-              <ToolCard src="/static/images/count.png" text="Words counter" href="" />
+              <ToolCard src="/static/images/count.png" text="Words counter" href="/tools/words_counter" />
               <ToolCard src="/static/images/text-convert.png" text="Case Converter" href="" />
               <ToolCard src="/static/images/text-slug.png" text="Text To Slug" href="" />
 
@@ -56,15 +56,6 @@ export default function Home() {
 
         </div>
       </div>
-
-
-
-
-      {siteMetadata.newsletter.provider !== '' && (
-        <div className="flex items-center justify-center pt-4">
-          <NewsletterForm />
-        </div>
-      )}
     </>
   )
 }
