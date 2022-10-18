@@ -1,34 +1,34 @@
 import { useState, useRef } from 'react'
 
-const Pre = (props) => {
+const PreE = (props) => {
+  const outputEl = props.ele
+  const show = props.showCopy
+
+
   const textInput = useRef(null)
   const [hovered, setHovered] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const onEnter = () => {
-    setHovered(true)
-  }
-  const onExit = () => {
-    setHovered(false)
-    setCopied(false)
-  }
+
   const onCopy = () => {
     setCopied(true)
-    navigator.clipboard.writeText(textInput.current.textContent)
+    const text = textInput.current?.textContent || outputEl.current?.value
+
+    navigator.clipboard.writeText(text)
     setTimeout(() => {
       setCopied(false)
-    }, 2000)
+    }, 2500)
   }
 
   return (
-    <div ref={textInput} onMouseEnter={onEnter} onMouseLeave={onExit} className="relative">
-      {hovered && (
+    <div ref={textInput} className="relative">
+      {show && (
         <button
           aria-label="Copy code"
           type="button"
-          className={`absolute right-2 top-2 h-8 w-8 rounded border-2 bg-gray-700 p-1 dark:bg-gray-800 ${copied
-              ? 'border-green-400 focus:border-green-400 focus:outline-none'
-              : 'border-gray-300'
+          className={`absolute right-2 top-2 h-10 w-10 rounded border-2 bg-gray-700 p-1 m-1 dark:bg-gray-800 ${copied
+            ? 'border-green-400 focus:border-green-400 focus:outline-none'
+            : 'border-gray-300'
             }`}
           onClick={onCopy}
         >
@@ -67,4 +67,4 @@ const Pre = (props) => {
   )
 }
 
-export default Pre
+export default PreE

@@ -10,7 +10,49 @@ export default function EmailExtractor() {
     const [error, setError] = useState(false)
     const [message, setMessage] = useState('')
 
-    // const 
+    const [chars, setChars] = useState(0)
+    const [charsWS, setCharsWS] = useState(0)
+    const [words, setWords] = useState(0)
+    const [pCnt, setPCnt] = useState(0)
+
+
+
+    const Count = (e) => {
+        e.preventDefault()
+
+        
+        const input = inputEl.current.value
+        
+        
+        if (input == "") {
+            return (0)
+        }
+        console.log(input == '')
+        
+        e.target.classList.add("btn_loading")
+
+        setTimeout(() => {
+            e.target.classList.remove("btn_loading")
+            setCharsWS(input.length)
+    
+            let charsCnt = 0
+            for (let i = 0; i < input.length; i++) {
+                if (input[i] != ' ' && input[i] != '\n') charsCnt++
+            }
+            setChars(charsCnt)
+    
+            setWords(input.match(/\w\S*/g).length)
+    
+            pCnt = 0
+            input.split('\n').forEach((p) => {
+                if (p != '') pCnt++
+            })
+            setPCnt(pCnt)
+        }, 2000);
+
+    }
+
+
 
 
     return (
@@ -27,32 +69,45 @@ export default function EmailExtractor() {
                     </div>
                 </div>
 
-                <form className="flex flex-col sm:flex-row" >
+                <form className="flex flex-col p-2 mx-auto mt-2 sm:max-w-xl lg:max-w-3xl" >
+                    <div className="flex flex-wrap">
+                        <div className="bg-body cnt card card-text p-2 font-weight-bold text-muted">
+                            Words <span className="p-1 bg-primary-200">{words}</span>
+                        </div>
+                        <div className="bg-body cnt card card-text p-2 font-weight-bold text-muted">
+                            Paragraphs <span className="p-1 bg-primary-200">{pCnt}</span>
+                        </div>
+                        <div className="bg-body cnt card card-text p-2 font-weight-bold text-muted">
+                            Characters <span className="p-1 bg-primary-200">{chars}</span>
+                        </div>
+                        <div className="bg-body lcnt cnt card card-text p-2 font-weight-bold text-muted">
+                            Characters (with spaces) <span className="p-1 bg-primary-200">{charsWS}</span>
+                        </div>
+                    </div>
+
                     <div>
-                        <label className="sr-only" htmlFor="email-input">
-                            Text
+                        <label className="sr-only" htmlFor="text_input">
+                            Text To Count
                         </label>
-                        <input
+                        <textarea
                             autoComplete="text"
-                            className="w-72 rounded-md px-4 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-600 dark:bg-black"
-                            id="email-input"
+                            className="w-full my-4 border-2 rounded-md px-4  focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary-600 dark:bg-black"
+                            id="text_input"
                             name="text"
-                            // placeholder={subscribed ? "You're subscribed !  🎉" : 'Enter your email'}
+                            placeholder={"Enter Text To Count"}
                             ref={inputEl}
+                            rows={10}
                             required
                             type="text"
-                        // disabled={subscribed}
                         />
                     </div>
                     <div className="mt-2 flex w-full rounded-md shadow-sm sm:mt-0 sm:ml-3">
                         <button
-                            className={`w-full rounded-md bg-primary-500 py-2 px-4 font-medium text-white sm:py-0 
-                             
-                                focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 dark:ring-offset-black`}
+                            className={`loader w-40 m-auto rounded-md bg-primary-500 py-3 px-4 mb-4 font-medium text-white focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 dark:ring-offset-black`}
                             type="submit"
-                        // disabled={subscribed}
+                            onClick={e => Count(e)}
                         >
-                            {'Sign up'}
+                            <span className="btn__text">{'Count'}</span>
                         </button>
                     </div>
                 </form>
