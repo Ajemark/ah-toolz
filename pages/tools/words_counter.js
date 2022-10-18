@@ -20,34 +20,34 @@ export default function EmailExtractor() {
     const Count = (e) => {
         e.preventDefault()
 
-        
+
         const input = inputEl.current.value
-        
-        
+
+
         if (input == "") {
             return (0)
         }
         console.log(input == '')
-        
+
         e.target.classList.add("btn_loading")
 
         setTimeout(() => {
             e.target.classList.remove("btn_loading")
             setCharsWS(input.length)
-    
+
             let charsCnt = 0
             for (let i = 0; i < input.length; i++) {
                 if (input[i] != ' ' && input[i] != '\n') charsCnt++
             }
             setChars(charsCnt)
-    
+
             setWords(input.match(/\w\S*/g).length)
-    
-            pCnt = 0
+
+            pCnts = 0
             input.split('\n').forEach((p) => {
-                if (p != '') pCnt++
+                if (p != '') pCnts++
             })
-            setPCnt(pCnt)
+            setPCnt(pCnts)
         }, 2000);
 
     }
