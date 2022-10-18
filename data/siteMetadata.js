@@ -6,10 +6,10 @@ const siteMetadata = {
   blogDescription: 'AH-Toolz.com ~ The Home Of Free Online Tools For You!',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://ah-toolz.com',
   siteRepo: '',
   siteLogo: '/static/images/logo.png',
-  image: '/static/images/avatar.png',
+  image: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   email: 'address@yoursite.com',
   github: 'https://github.com',
