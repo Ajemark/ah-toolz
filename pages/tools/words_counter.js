@@ -43,7 +43,7 @@ export default function EmailExtractor() {
 
             setWords(input.match(/\w\S*/g).length)
 
-            pCnts = 0
+            let pCnts = 0
             input.split('\n').forEach((p) => {
                 if (p != '') pCnts++
             })
